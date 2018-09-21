@@ -1,3 +1,3 @@
 #!/bin/bash
-./main1 ($1)
+./main1 $1
 exit 0

@@ -33,7 +33,7 @@ void get_input(long long int& vertices, long long int& edges, long long int& num
     edges = atoi(main_in[1].c_str());
     num_sub = atoi(main_in[2].c_str());
 
-    for(int i = 0; i<vertices; i++){
+    for(int i = 0; i<=vertices; i++){
         vector<int> vin;
         graph.push_back(vin);
     }
@@ -42,5 +42,6 @@ void get_input(long long int& vertices, long long int& edges, long long int& num
         vector<string> in;
         splitString(lines[i], delimiter, in);
         graph[atoi(in[0].c_str())].push_back(atoi(in[1].c_str()));
+        graph[atoi(in[1].c_str())].push_back(atoi(in[0].c_str()));
     }
 }
