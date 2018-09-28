@@ -17,22 +17,22 @@ int main(int argc, char **argv){
     ifstream infile2(inputfilename2.c_str());
     ofstream outfile(outputfilename.c_str());
     if(!(infile1.is_open())){
-        cout << "There is no such input file" << endl;
+        cout << "There is no such input file" << "\n";
         exit(1);
     }
     if(!(infile2.is_open())){
-        cout << "There is no such input file" << endl;
+        cout << "There is no such input file" << "\n";
         exit(2);
     }
     if(!(outfile).is_open()){
-        cout << "There is no such output file" << endl;
+        cout << "There is no such output file" << "\n";
         exit(3);
     }
     string ans;
     infile2 >> ans;
     ans = ans.substr(0,2);
     if(ans.compare("UN")==0){
-        outfile << 0 << endl;
+        outfile << 0 << "\n";
         outfile.close();
     }
     else{
@@ -50,8 +50,8 @@ int main(int argc, char **argv){
                     s += to_string(j) + " ";
                 }
             }
-            outfile << count << endl;
-            outfile << s.substr(0,s.length() - 1) << endl;
+            outfile << count << "\n";
+            outfile << s.substr(0,s.length() - 1) << "\n";
         }
         outfile.close();    
     }
