@@ -45,10 +45,24 @@ int main(int argc, char **argv){
 
     string ab;
     for(int i=1;i<=nsg;i++){
+        ab = "";
         for(int j=1;j<=nv;j++){
             numVar++;
             mpresent[make_pair(i,j)] = numVar;
+            ab += to_string(numVar);
+            ab += " ";
         }
+        ab += "0";
+        clauses.push_back(ab);
+    }
+    for(int i=1;i<=nv;i++){
+        ab = "";
+        for(int j=1;j<=nsg;j++){
+            ab += to_string(mpresent[make_pair(j,i)]);
+            ab += " ";
+        }
+        ab += "0";
+        clauses.push_back(ab);
     }
     for(int i=1;i<=nsg;i++){
         for(int j=i+1;j<=nsg;j++){
@@ -62,7 +76,7 @@ int main(int argc, char **argv){
                 ab += opti;
                 ab += " -";
                 ab += optii;
-                ab += "  0";
+                ab += " 0";
                 //ab = "-" + opti + " -" + optii  + "  0";
                 clauses.push_back(ab);
 
@@ -70,7 +84,7 @@ int main(int argc, char **argv){
                 ab += opti;
                 ab += " ";
                 ab += optij;
-                ab += "  0";
+                ab += " 0";
                 //ab = "-" + opti + " " + optij + "  0";
                 clauses.push_back(ab);
 
@@ -79,7 +93,7 @@ int main(int argc, char **argv){
                 ab += optii;
                 ab += " -";
                 ab += optij;
-                ab += "  0";
+                ab += " 0";
                 //ab = opti + " " + optii + " -" + optij + "  0";
                 clauses.push_back(ab);
                 numVar++;
@@ -89,7 +103,7 @@ int main(int argc, char **argv){
                 ab += opti;
                 ab += " ";
                 ab += optii;
-                ab += "  0";
+                ab += " 0";
                 //ab = "-" + opti + " " + optii  + "  0";
                 clauses.push_back(ab);
 
@@ -97,7 +111,7 @@ int main(int argc, char **argv){
                 ab += opti;
                 ab += " -";
                 ab += optij;
-                ab += "  0";
+                ab += " 0";
                 //ab = "-" + opti + " -" + optij + "  0";
                 clauses.push_back(ab);
 
@@ -106,20 +120,20 @@ int main(int argc, char **argv){
                 ab += optii;
                 ab += " ";
                 ab += optij;
-                ab += "  0";
+                ab += " 0";
                 //ab = opti + " -" + optii + " " + optij + "  0";
                 clauses.push_back(ab);
             }
         }
     }
 
-    for(int i=0;i<edges.size();i++){
-        numVar++;
-        int a = edges.at(i).first;
-        int b = edges.at(i).second;
-        ab = to_string(numVar) + "  0";
-        clauses.push_back(ab);
-    }
+    // for(int i=0;i<edges.size();i++){
+    //     numVar++;
+    //     int a = edges.at(i).first;
+    //     int b = edges.at(i).second;
+    //     ab = to_string(numVar) + "  0";
+    //     clauses.push_back(ab);
+    // }
     n3= clock();
     for(int i=0;i<edges.size();i++){
         ab = "";
@@ -138,13 +152,13 @@ int main(int argc, char **argv){
             t1 += opti;
             t1 += " ";
             t1 += optia;
-            t1 += "  0";
+            t1 += " 0";
             //string t2 = "-" + opti + " " + optib + "  0";
             string t2 = "-";
             t2 += opti;
             t2 += " ";
             t2 += optib;
-            t2 += "  0";
+            t2 += " 0";
             //string t3 = "-" + optia + " -" + optib + " " + opti + "  0";
             string t3 = "-";
             t3 += optia;
@@ -152,12 +166,12 @@ int main(int argc, char **argv){
             t3 += optib;
             t3 += " ";
             t3 += opti;
-            t3 += "  0";
+            t3 += " 0";
             clauses.push_back(t1);
             clauses.push_back(t2);
             clauses.push_back(t3);
         }
-        ab += " 0";
+        ab += "0";
         clauses.push_back(ab);
     }
     n4= clock();
@@ -171,7 +185,7 @@ int main(int argc, char **argv){
                     ab += to_string(mpresent[make_pair(i,j)]);
                     ab += " -";
                     ab += to_string(mpresent[make_pair(i,k)]);
-                    ab += "  0";
+                    ab += " 0";
                     clauses.push_back(ab);
                 }
             }
@@ -185,7 +199,7 @@ int main(int argc, char **argv){
             ab += to_string(edgepresent[make_pair(j,i)]);
             ab += " ";
         }
-        ab += " 0";
+        ab += "0";
         clauses.push_back(ab);
     }
     string bc;
@@ -199,8 +213,8 @@ int main(int argc, char **argv){
                 bc +=  to_string(mapping2[i][j][k]) ;
                 bc += " ";
             }
-            ab += " 0";
-            bc += " 0";
+            ab += "0";
+            bc += "0";
             clauses.push_back(ab);
             clauses.push_back(bc);
         }
