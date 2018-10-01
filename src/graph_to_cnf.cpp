@@ -10,7 +10,7 @@
 using namespace std;
 
 int main(int argc, char **argv){
-    clock_t n1= clock(),n2,n3,n4,n5;
+    //clock_t n1= clock(),n2;
     if(argc!=2){
         exit(0);
     }
@@ -134,7 +134,7 @@ int main(int argc, char **argv){
     //     ab = to_string(numVar) + "  0";
     //     clauses.push_back(ab);
     // }
-    n3= clock();
+    //n3= clock();
     for(int i=0;i<edges.size();i++){
         ab = "";
         int a = edges.at(i).first;
@@ -174,8 +174,8 @@ int main(int argc, char **argv){
         ab += "0";
         clauses.push_back(ab);
     }
-    n4= clock();
-    cout << "4: " <<((double)(n4 - n3)/(CLOCKS_PER_SEC)) << "\n";
+    //n4= clock();
+    //cout << "4: " <<((double)(n4 - n3)/(CLOCKS_PER_SEC)) << "\n";
     for(int j=1;j<=nv;j++){
         for(int k=j+1;k<=nv;k++){
             if(!(edd[j][k]==1)){
@@ -191,8 +191,8 @@ int main(int argc, char **argv){
             }
         }
     }
-    n5= clock();
-    cout << "5: " <<((double)(n5 - n4)/(CLOCKS_PER_SEC)) << "\n";
+    //n5= clock();
+    //cout << "5: " <<((double)(n5 - n4)/(CLOCKS_PER_SEC)) << "\n";
     for(int i=1;i<=nsg;i++){
         ab = "";
         for(int j=0;j<edges.size();j++){
@@ -228,7 +228,7 @@ int main(int argc, char **argv){
         outfile << clauses.at(i) << "\n";
     }
     outfile.close();
-    n2= clock();
-    cout << ((double)(n2 - n1)/(CLOCKS_PER_SEC)) << "\n";
+    //n2= clock();
+    //cout << ((double)(n2 - n1)/(CLOCKS_PER_SEC)) << "\n";
     return 0;
 }
