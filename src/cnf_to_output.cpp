@@ -53,6 +53,7 @@ int main(int argc, char **argv){
             outfile << count << "\n";
             outfile << s.substr(0,s.length() - 1) << "\n";
         }
+        infile2.close();
         outfile.close();    
     }
     return 0;

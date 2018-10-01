@@ -24,6 +24,7 @@ int main(int argc, char **argv){
         cout << "There is no such input file" << "\n";
         exit(1);
     }
+
     int nv,ne,nsg;
     infile >> nv >> ne >> nsg;
     bool present[nsg+1][nv+1];
@@ -40,10 +41,11 @@ int main(int argc, char **argv){
     infile.close();
     int numVar=0;
     vector<string> clauses;
-    map<pair<int, int>, int> mpresent,edgepresent;
-    int mapping[nsg+1][nsg+1][nv+1],mapping2[nsg+1][nsg+1][nv+1];
 
+    map<pair<int, int>,int> mpresent,edgepresent;
     string ab;
+    
+
     for(int i=1;i<=nsg;i++){
         ab = "";
         for(int j=1;j<=nv;j++){
@@ -64,14 +66,16 @@ int main(int argc, char **argv){
         ab += "0";
         clauses.push_back(ab);
     }
+    string cd="",de="";
     for(int i=1;i<=nsg;i++){
         for(int j=i+1;j<=nsg;j++){
+            cd = "";
+            de = "";
             for(int k=1;k<=nv;k++){
                 numVar++;
                 string opti = to_string(numVar);
                 string optii = to_string(mpresent[make_pair(i,k)]);
                 string optij = to_string(mpresent[make_pair(j,k)]);
-                mapping[i][j][k] = numVar;
                 ab = "-";
                 ab += opti;
                 ab += " -";
@@ -96,9 +100,12 @@ int main(int argc, char **argv){
                 ab += " 0";
                 //ab = opti + " " + optii + " -" + optij + "  0";
                 clauses.push_back(ab);
+                cd +=  to_string(numVar) ;
+                cd += " ";
+                
+
                 numVar++;
                 opti = to_string(numVar);
-                mapping2[i][j][k] = numVar;
                 ab = "-";
                 ab += opti;
                 ab += " ";
@@ -123,10 +130,15 @@ int main(int argc, char **argv){
                 ab += " 0";
                 //ab = opti + " -" + optii + " " + optij + "  0";
                 clauses.push_back(ab);
+                de +=  to_string(numVar) ;
+                de += " ";
             }
+            cd += "0";
+            de += "0";
+            clauses.push_back(cd);
+            clauses.push_back(de);
         }
     }
-
     // for(int i=0;i<edges.size();i++){
     //     numVar++;
     //     int a = edges.at(i).first;
@@ -203,22 +215,7 @@ int main(int argc, char **argv){
         clauses.push_back(ab);
     }
     string bc;
-    for(int i=1;i<=nsg;i++){
-        for(int j=i+1;j<=nsg;j++){
-            ab = "";
-            bc = "";
-            for(int k=1;k<=nv;k++){
-                ab +=  to_string(mapping[i][j][k]) ;
-                ab += " ";
-                bc +=  to_string(mapping2[i][j][k]) ;
-                bc += " ";
-            }
-            ab += "0";
-            bc += "0";
-            clauses.push_back(ab);
-            clauses.push_back(bc);
-        }
-    }
+    
     if(!(outfile).is_open()){
         cout << "There is no such output file" << "\n";
         exit(2);
